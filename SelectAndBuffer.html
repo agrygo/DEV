@@ -5,7 +5,7 @@
   <!--The viewport meta tag is used to improve the presentation and behavior of the samples 
   on iOS devices-->
   <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
-  <title>Select test</title>
+  <title>Select and Buffer</title>
 
   <link rel="stylesheet" href="http://js.arcgis.com/3.12/dijit/themes/claro/claro.css">
   <link rel="stylesheet" href="http://js.arcgis.com/3.12/esri/css/esri.css" />
@@ -17,6 +17,7 @@
     require([
       "esri/InfoTemplate",
       "esri/map",
+      "esri/geometry/Extent",
       "esri/layers/FeatureLayer",
       "esri/symbols/SimpleFillSymbol",
       "esri/symbols/SimpleLineSymbol",
@@ -31,7 +32,7 @@
       "dojo/domReady!"
     ],
       function (
-        InfoTemplate, Map, FeatureLayer, SimpleFillSymbol, SimpleLineSymbol,
+        InfoTemplate, Map, Extent, FeatureLayer, SimpleFillSymbol, SimpleLineSymbol,
         Query, Draw, dom, on, parser, arrayUtil, Color
       ) {
 
@@ -40,9 +41,11 @@
         var selectionToolbar, featureLayer;
 
         map = new Map("map", {
-          basemap: "streets",
-          center: [ -107.918, 39.617 ],
-          zoom: 11
+          basemap: "topo",
+          //center: [ -107.918, 39.617 ],
+          extent: new
+          Extent ({"xmin":-11949053.31109845,"ymin":4799551.289959352,"xmax":-11945709.191110885,"ymax":4801939.947093327,"spatialReference":{"wkid":102100,"latestWkid":3857}}),
+          zoom: 15
         });
 
         map.on("load", initSelectToolbar);
